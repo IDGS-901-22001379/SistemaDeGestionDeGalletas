@@ -27,8 +27,44 @@
 ## 🏛️ Arquitectura (capas)
 `REST (JAX-RS)` → `Controller` → `CQRS (validaciones)` → `DAO (SP/SQL)` → `MySQL`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↘ `AppService (sucursal externa)` → `ViewModel`
+---
+ ## 🖥️ Frontend (HTML/JS)
+
+- 🧺 **Carrito** con validación de **existencias**
+- 💵 **Cobro**: total, pagado y **cambio**
+- 🧾 **Ticket imprimible** (HTML mini)
+- 📋 **Listado/Detalle** de ventas (click por fila)
+- ⚠️ **Mermas** con SweetAlert2
 
 ---
+
+## 🌐 Microservicios (multi-sucursal)
+**VentaExternaAppService** (Java `HttpClient`) consulta:
+El **Controller** puede **combinar** / **exponer directo** el **ViewModel** externo para una **vista federada**.
+---
+
+## 🗄️ Base de datos (MySQL)
+
+- SP `insertarVenta` recibe **detalle JSON** y regresa `id_venta`
+- Tablas: `ventas`, `detalle_venta`, `galletas` (tipo, costo, existencia)
+- Uso de **PreparedStatement** y **cierre seguro** de conexiones
+
+---
+
+## 🧪 Validaciones (resumen)
+
+- **CQRS**: descripción, total, ticket, tipo_venta y cada detalle **> 0**, ids válidos
+- **Frontend**: **existencia ≥ cantidad**
+- **DAO**: tipos correctos + manejo de conexiones
+
+---
+
+## ⚙️ Puesta en marcha (local)
+
+- **MySQL**: crear BD/tablas; cargar SP `insertarVenta`; configurar credenciales en la clase de conexión.
+- **Backend (JAX-RS)**: desplegar en Tomcat/Payara/GlassFish (contexto sugerido: `DON_GALLETO_Ventas`).
+- **Frontend**: abrir `index.html` (consume `http://localhost:8080/DON_GALLETO_Ventas/api/...`).
+- **CORS**: habilitado en desarrollo (ajustar orígenes en prod).
 
 ## 🔌 Endpoints clave
 - **POST** `/api/venta/insertar` *(x-www-form-urlencoded)*  
@@ -51,17 +87,7 @@ fetch("http://localhost:8080/DON_GALLETO_Ventas/api/venta/insertar", {
   headers: { "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8" },
   body: new URLSearchParams({ v: JSON.stringify(venta), ldv: JSON.stringify(detalles) })
 });
- ## 🖥️ Frontend (HTML/JS)
 
-- 🧺 **Carrito** con validación de **existencias**
-- 💵 **Cobro**: total, pagado y **cambio**
-- 🧾 **Ticket imprimible** (HTML mini)
-- 📋 **Listado/Detalle** de ventas (click por fila)
-- ⚠️ **Mermas** con SweetAlert2
-
----
-
-## 🌐 Microservicios (multi-sucursal)
 
 
 
