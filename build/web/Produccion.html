@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Producción de Galletas</title>
+        <link href="css/estilos_produccion.css" rel="stylesheet" type="text/css"/>
+        <link href="css/merma.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+    </head>
+    <body>
+        <img src="img/galleto.png" alt="" class="logo" onclick="redireccionar()">
+        <header class="header">
+
+            <nav class="nav">
+                <a href="Insumos.html">Insumos</a>
+                <a href="Ventas.html">Ventas</a>
+                <a href="Produccion.html" class="activo">Producción</a>
+                <a href="#">Galletas</a>
+                <a href="Compras.html">Compras</a>
+                <a href="#">Ganancias</a>
+
+            </nav>
+        </header>
+        <!-- Contenedor de las tarjetas -->
+        <div class="container centrado">
+            <!-- Primera fila -->
+            <div class="row">
+                <!-- Tarjeta 1 -->
+                <div class="flipCard" onclick="toggleCard(event)">
+                    <div class="flipCardInterior">
+                        <!-- Lado frontal -->
+                        <div class="flipCardFrontal">
+                            <div id="circle-1" class="status-circle status-red" onclick="addCookie(event, 1)">
+                                <img src="img/galletas.png" alt=""/>
+                            </div>
+                            <span id="contador-1" class="contador">0</span>
+                        </div>
+                        <!-- Lado posterior -->
+                        <div class="flipCardPosterior">
+                            <div>
+                                <h5>Receta: Chocolate</h5>
+                                <ul>
+                                    <li>4 kg de harina de trigo</li>
+                                    <li>2.5 kg de mantequilla</li>
+                                    <li>2.5 kg de azúcar</li>
+                                    <li>1.5 kg de chispas de chocolate</li>
+                                    <li>1 litro de leche</li>
+                                    <li>50 g de sal</li>
+                                    <li>50 g de cacao</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Arándano -->
+                <div class="flipCard" onclick="toggleCard(event)">
+                    <div class="flipCardInterior">
+                        <!-- Lado frontal -->
+                        <div class="flipCardFrontal">
+                            <div id="circle-2" class="status-circle status-red" onclick="addCookie(event, 2)">
+                                <img src="img/galletas.png" alt=""/>
+                            </div>
+                            <span id="contador-2" class="contador">0</span>
+                        </div>
+                        <!-- Lado posterior -->
+                        <div class="flipCardPosterior">
+                            <div>
+                                <h5>Receta: Arándano</h5>
+                                <ul>
+                                    <li>5 kg de harina de trigo</li>
+                                    <li>2.5 kg de mantequilla</li>
+                                    <li>2.5 kg de azúcar</li>
+                                    <li>1.5 kg de arándanos secos</li>
+                                    <li>1 litro de leche</li>
+                                    <li>50 g de sal</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Avena -->
+                <div class="flipCard" onclick="toggleCard(event)">
+                    <div class="flipCardInterior">
+                        <!-- Lado frontal -->
+                        <div class="flipCardFrontal">
+                            <div id="circle-3" class="status-circle status-red" onclick="addCookie(event, 3)">
+                                <img src="img/galletas.png" alt=""/>
+                            </div>
+                            <span id="contador-3" class="contador">0</span>
+                        </div>
+                        <!-- Lado posterior -->
+                        <div class="flipCardPosterior">
+                            <div>
+                                <h5>Receta: Avena</h5>
+                                <ul>
+                                    <li>3 kg de avena</li>
+                                    <li>2.5 kg de harina</li>
+                                    <li>2.5 kg de azúcar</li>
+                                    <li>1 litro de leche</li>
+                                    <li>50 g de sal</li>
+                                    <li>1 kg de pasas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: Vainilla -->
+                <div class="flipCard" onclick="toggleCard(event)">
+                    <div class="flipCardInterior">
+                        <!-- Lado frontal -->
+                        <div class="flipCardFrontal">
+                            <div id="circle-4" class="status-circle status-red" onclick="addCookie(event, 4)">
+                                <img src="img/galletas.png" alt=""/>
+                            </div>
+                            <span id="contador-4" class="contador">0</span>
+                        </div>
+                        <!-- Lado posterior -->
+                        <div class="flipCardPosterior">
+                            <div>
+                                <h5>Receta: Vainilla</h5>
+                                <ul>
+                                    <li>5 kg de harina</li>
+                                    <li>2.5 kg de mantequilla</li>
+                                    <li>2.5 kg de azúcar</li>
+                                    <li>50 g de esencia de vainilla</li>
+                                    <li>1 litro de leche</li>
+                                    <li>50 g de sal</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 5: Chispas de Chocolate -->
+                <div class="flipCard" onclick="toggleCard(event)">
+                    <div class="flipCardInterior">
+                        <!-- Lado frontal -->
+                        <div class="flipCardFrontal">
+                            <div id="circle-5" class="status-circle status-red" onclick="addCookie(event, 5)">
+                                <img src="img/galletas.png" alt=""/>
+                            </div>
+                            <span id="contador-5" class="contador">0</span>
+                        </div>
+                        <!-- Lado posterior -->
+                        <div class="flipCardPosterior">
+                            <div>
+                                <h5>Receta: Chispas de Chocolate</h5>
+                                <ul>
+                                    <li>5 kg de harina</li>
+                                    <li>2.5 kg de mantequilla</li>
+                                    <li>2.5 kg de azúcar</li>
+                                    <li>2 kg de chispas de chocolate</li>
+                                    <li>1 litro de leche</li>
+                                    <li>50 g de sal</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segunda fila -->
+            <div class="row">
+                <!-- Tarjeta 6: Limón -->
+                <div class="flipCard" onclick="toggleCard(event)">
+                    <div class="flipCardInterior">
+                        <!-- Lado frontal -->
+                        <div class="flipCardFrontal">
+                            <div id="circle-6" class="status-circle status-red" onclick="addCookie(event, 6)">
+                                <img src="img/galletas.png" alt=""/>
+                            </div>
+                            <span id="contador-6" class="contador">0</span>
+                        </div>
+                        <!-- Lado posterior -->
+                        <div class="flipCardPosterior">
+                            <div>
+                                <h5>Receta: Limón</h5>
+                                <ul>
+                                    <li>5 kg de harina</li>
+                                    <li>2.5 kg de mantequilla</li>
+                                    <li>2.5 kg de azúcar</li>
+                                    <li>200 ml de jugo de limón</li>
+                                    <li>Ralladura de 20 limones</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 7: Almendra -->
+                <div class="flipCard" onclick="toggleCard(event)">
+                    <div class="flipCardInterior">
+                        <!-- Lado frontal -->
+                        <div class="flipCardFrontal">
+                            <div id="circle-7" class="status-circle status-red" onclick="addCookie(event, 7)">
+                                <img src="img/galletas.png" alt=""/>
+                            </div>
+                            <span id="contador-7" class="contador">0</span>
+                        </div>
+                        <!-- Lado posterior -->
+                        <div class="flipCardPosterior">
+                            <div>
+                                <h5>Receta: Almendra</h5>
+                                <ul>
+                                    <li>5 kg de harina</li>
+                                    <li>2.5 kg de mantequilla</li>
+                                    <li>2.5 kg de azúcar</li>
+                                    <li>1.5 kg de almendras troceadas</li>
+                                    <li>1 litro de leche</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 8: Coco -->
+                <div class="flipCard" onclick="toggleCard(event)">
+                    <div class="flipCardInterior">
+                        <!-- Lado frontal -->
+                        <div class="flipCardFrontal">
+                            <div id="circle-8" class="status-circle status-red" onclick="addCookie(event, 8)">
+                                <img src="img/galletas.png" alt=""/>
+                            </div>
+                            <span id="contador-8" class="contador">0</span>
+                        </div>
+                        <!-- Lado posterior -->
+                        <div class="flipCardPosterior">
+                            <div>
+                                <h5>Receta: Coco</h5>
+                                <ul>
+                                    <li>4 kg de harina</li>
+                                    <li>2.5 kg de mantequilla</li>
+                                    <li>2.5 kg de azúcar</li>
+                                    <li>2 kg de coco rallado</li>
+                                    <li>1 litro de leche</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 9: Jengibre -->
+                <div class="flipCard" onclick="toggleCard(event)">
+                    <div class="flipCardInterior">
+                        <!-- Lado frontal -->
+                        <div class="flipCardFrontal">
+                            <div id="circle-9" class="status-circle status-red" onclick="addCookie(event, 9)">
+                                <img src="img/galletas.png" alt=""/>
+                            </div>
+                            <span id="contador-9" class="contador">0</span>
+                        </div>
+                        <!-- Lado posterior -->
+                        <div class="flipCardPosterior">
+                            <div>
+                                <h5>Receta: Jengibre</h5>
+                                <ul>
+                                    <li>4 kg de harina</li>
+                                    <li>2.5 kg de mantequilla</li>
+                                    <li>2.5 kg de azúcar</li>
+                                    <li>500 g de miel</li>
+                                    <li>200 g de jengibre en polvo</li>
+                                    <li>50 g de canela en polvo</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 10: Sorpresa Nuez -->
+                <div class="flipCard" onclick="toggleCard(event)">
+                    <div class="flipCardInterior">
+                        <!-- Lado frontal -->
+                        <div class="flipCardFrontal">
+                            <div id="circle-10" class="status-circle status-red" onclick="addCookie(event, 10)">
+                                <img src="img/galletas.png" alt=""/>
+                            </div>
+                            <span id="contador-10" class="contador">0</span>
+                        </div>
+                        <!-- Lado posterior -->
+                        <div class="flipCardPosterior">
+                            <div>
+                                <h5>Receta: Sorpresa Nuez</h5>
+                                <ul>
+                                    <li>5 kg de harina</li>
+                                    <li>2.5 kg de mantequilla</li>
+                                    <li>2.5 kg de azúcar</li>
+                                    <li>1.5 kg de nueces troceadas</li>
+                                    <li>1 litro de leche</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalMermasGalleta" class="modal-mermas">
+            <div class="modal-content-mermas">
+                <span class="close-mermas" onclick="cerrarmodalmerma()">&times;</span>
+                <h2>Merma Galletas</h2>
+                <form id="mermaFormGalletas">
+                    <label for="tipoGalleta">Tipo de galleta:</label>
+                    <select id="tipoGalleta">
+                        <option value="1">Chocolate</option>
+                        <option value="2">Arándano</option>
+                        <option value="3">Avena</option>
+                        <option value="4">Vainilla</option>
+                        <option value="5">Chispas de Chocolate</option>
+                        <option value="6">Limón</option>
+                        <option value="7">Almendra</option>
+                        <option value="8">Coco</option>
+                        <option value="9">Jengibre</option>
+                        <option value="10">Sorpresa Nuez</option>
+                    </select>
+                    <label for="descripcionGalleta">Descripción:</label>
+                    <textarea id="descripcionGalleta"></textarea>
+                    <label for="cantidadGalleta">Cantidad:</label>
+                    <input type="number" id="cantidadGalleta" min="1">
+                    <label for="fechaGalleta">Fecha:</label>
+                    <input type="date" id="fechaGalleta">
+                    <div class="modal-buttons">
+                        <button type="button" onclick="registrarMermaGalletas()">Aceptar</button>
+                        <button type="button" onclick="cerrarModal('modalMermasGalleta')">Cancelar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div id="modalMermas" class="modal-mermas">
+            <div class="modal-content-mermas">
+                <span class="close-mermas" onclick="cerrarmodalmerma()">&times;</span>
+                <h2>Merma Insumos</h2>
+                <form id="mermaForm">
+                    <label for="tipoInsumo">Insumo:</label>
+                    <select id="tipoInsumo">
+                        <option value="1">Harina</option>
+                        <option value="2">Azúcar</option>
+                        <option value="3">Mantequilla</option>
+                        <option value="4">Leche</option>
+                        <option value="5">Cacao</option>
+                    </select>
+                    <label for="descripcionInsumo">Descripción:</label>
+                    <textarea id="descripcionInsumo"></textarea>
+                    <label for="cantidadInsumo">Cantidad:</label>
+                    <input type="text" id="cantidadInsumo">
+                    <label for="fechaInsumo">Fecha:</label>
+                    <input type="date" id="fechaInsumo">
+                    <div class="modal-buttons">
+                        <button type="button" onclick="registrarMermaInsumos()">Aceptar</button>
+                        <button type="button" onclick="cerrarModal('modalMermas')">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- Botones de acción -->
+        <div class="modal-buttons">
+            <button onclick="abrirModal('modalMermasGalleta')"><img src="img/galleta.png" width="30" height="30" alt=""/></button>
+            
+            <button onclick="abrirModal('modalMermas')"><img src="img/borrarmerma.png" width="30" height="30" alt=""/></button>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="js/Produccion.js" type="text/javascript"></script>
+    </body>
+</html>

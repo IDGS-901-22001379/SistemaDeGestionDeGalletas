@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Compras - Galletería Don Galleto</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/estilos_compras.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <img src="img/galleto.png" alt="" class="logo" onclick="redireccionar()">
+        <header class="header">
+
+            <nav class="nav">
+                <a href="Insumos.html">Insumos</a>
+                <a href="Ventas.html">Ventas</a>
+                <a href="Produccion.html">Producción</a>
+                <a href="#">Galletas</a>
+                <a href="Compras.html" class="activo">Compras</a>
+                <a href="#">Ganancias</a>
+            </nav>
+        </header>
+        <main class="main">
+            <div class="select-container">
+                <select id="proveedor">
+                    <option value="" selected disabled>Seleccione el proveedor</option>
+                    <!-- Opciones dinámicas -->
+                </select>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Insumo</th>
+                        <th>Proveedor</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- El contenido se puede quitar, solo es de ejemplo -->
+                </tbody>
+            </table>
+            <!-- Modal agregar insumos al carrito-->
+            <div id="modalCarrito" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="cerrarModalCompras()">&times;</span>
+                    <h2 class="titulo-modal">Compra</h2>
+                    <form id="formulario-comparar">
+                        <label for="proveedor:">Proveedor:</label>
+                        <input type="text" id="proveedorcarrito" name="proveedor" disabled="">
+                        <label for="insumo:">Insumo:</label>
+                        <select class="selectCompra" id="insumocarrito">
+                            <option value="" selected disabled>Seleccione el insumo</option>
+                            <!-- Opciones dinámicas -->
+                        </select>
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="text" id="cantidadcarrito" name="cantidad" required oninput="validarNumeros(this); calcularTotal()">
+                        <label for="peso">Unidad:</label>
+                        <input type="text" id="pesocarrito" name="peso" required oninput="validarNumero(this)">
+                        <label for="precio">Precio:</label>
+                        <input type="text" id="preciocarrito" name="precio" required oninput="validarNumero(this); calcularTotal()">
+                        <label for="total">Total:</label>
+                        <input type="text" id="totalcarrito" name="total" required disabled="">
+                        <label for="fecha">Fecha:</label>
+                        <input type="text" id="fechacarrito" name="fecha" required disabled="">
+                        <div class="modal-buttons">
+                            <button type="button" onclick="guardar()">Guardar</button>
+                            <button type="button" onclick="cerrarModalCompras()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="extra-section">
+                <div class="button-container">
+                    <button class="btn" onclick="abrirModalPROVEEDOR()">Compras realizadas</button>
+                    <button class="btn" id="btnComprar">Comprar</button>
+                    <button class="btn" onclick="abrirModal()">Temporal</button>
+                </div>
+            </div>
+
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="cerrarModal()">&times;</span>
+                    <h2 class="titulo-modal">Agregar Proveedor</h2>
+                    <form id="proveedorForm">
+                        <label for="nombreProveedorInput">Proveedor</label>
+                        <input type="text" id="nombreProveedorInput" name="proveedor" required>
+                        <div class="modal-buttons">
+                            <button type="button" id="guardarProveedorBtn" onclick="agregarProveedor(event)">Guardar</button>
+                            <button type="button" onclick="cerrarModal()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Modal PROVEEDOR -->
+            <div id="modalVENTAS" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="cerrarModalPROVEEDOR()">&times;</span>
+                    <h2 class="titulo-modal">Compras Realizadas</h2>
+                    <div class="modal-body">
+                        <!-- Tabla principal -->
+                        <table class="tabla-ventas">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>No.Orden</th>
+                                    <th>Costo</th>
+                                    <th>Estatus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Las filas se agregarán dinámicamente con JavaScript -->
+                            </tbody>
+                        </table>
+
+                        <!-- Descripción de la compra -->
+                        <div class="descripcion-compra">
+                            <h3>Detalle de la Compra</h3>
+                            <p>Compra seleccionada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="js/Compras.js" type="text/javascript"></script>
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alertas de Inventario</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Fondo claro */
+        }
+        .alert-box {
+            background-color: #d2b48c; /* Café claro */
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .alert-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #5a4631;
+        }
+        .alert-item {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .alert-item h5 {
+            margin: 0;
+            color: #6c757d;
+            font-weight: bold;
+        }
+        .alert-item p {
+            margin: 5px 0 0;
+        }
+        .btn-mark {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="alert-box">
+    <div class="alert-title">Alertas de Inventario</div>
+    <div id="alertasContainer">
+        <!-- Aquí se cargarán las alertas desde el backend -->
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Axios para manejar las solicitudes -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- Enlace al JavaScript de las alertas -->
+<script src="../js/Alertas.js"></script>
+</body>
+</html>

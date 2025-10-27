@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ventas - Galletería Don Galleto</title>
+        <link href="css/estilos_ventas.css" rel="stylesheet" type="text/css"/>
+        <link href="css/merma.css" rel="stylesheet" type="text/css"/>
+        <link href="css/modal_cobro.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+    </head>
+    <body onload="cargarCatalogoVentas(); cargarSelectTipoVenta(); cargarSelectGalletas2()">
+        <img src="img/galleto.png" alt="" class="logo" onclick="redireccionar()">
+        <header class="header">
+
+            <nav class="nav">
+                <a href="Insumos.html">Insumos</a>
+                <a href="Ventas.html" class="activo">Ventas</a>
+                <a href="Produccion.html">Producción</a>
+                <a href="#">Galletas</a>
+                <a href="Compras.html">Compras</a>
+                <a href="#">Ganancias</a>
+                
+            </nav>
+        </header>
+
+        <main class="main">
+            <div class="select-container">
+                <select id="tipo_venta" onchange="abrirModalVenta()">
+
+                </select>
+            </div>
+
+            <!-- Tabla de ventas -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Importe</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tblDetalleVenta">
+
+                </tbody>
+            </table>
+
+            <!-- Nueva sección debajo de la tabla -->
+            <div class="extra-section">
+                <div class="button-container">
+                    <button class="btn" onclick="abrirModalventas()">Ventas del día</button>
+                    <button class="btn" onclick="abrirmodalmerma()"><img src="img/galleta.png" alt="" width="30" height="30"/></button>
+                    <button class="btn" onclick="abrirModalRegistroPago(calcularTotal())">Cobrar</button>
+                    
+                    <div class="total-price">
+                        <span>Total: </span><span id="total-importe">$00.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal VENTAS DEL DIA -->
+            <div id="modalVENTAS" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="cerrarModalVENTAS()">&times;</span>
+                    <h2 class="titulo-modal">Ventas realizadas</h2>
+                    <div class="modal-body">
+                        <!-- Tabla principal -->
+                        <table class="tabla-ventas">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Costo</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblVentas">
+                            </tbody>
+                        </table>
+
+                        <!-- Descripción de la compra -->
+                        <div class="descripcion-compra">
+                            <h3>Detalles de la venta</h3>
+                            <p>Venta seleccionada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Venta -->
+            <div id="modalVenta" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="cerrarModalVenta()">&times;</span>
+                    <h2 class="titulo-modal">Venta</h2>
+                    <div class="modal-body">
+                        <form id="ventaForm">
+                            <label for="tipoVenta">Tipo de venta:</label>
+                            <input type="text" id="tipoVenta" name="tipoVenta" disabled>
+
+                            <label for="tipoGalleta">Tipo de galleta:</label>
+                            <select id="tipoGalleta" name="tipoGalleta">
+
+                            </select>
+
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" id="cantidad" name="cantidad" min="0" step="0.01" oninput="">
+
+                            <label for="precio">Precio:</label>
+                            <input type="number" id="precio" name="precio" min="0" step="0.01" oninput="" disabled="">
+
+                            <label for="total">Total:</label>
+                            <input type="number" id="total" name="total" disabled>
+
+                            <div class="modal-buttons">
+                                <button type="button" onclick="guardarDetalleVenta()">Guardar</button>
+                                <button type="button" onclick="cerrarModalVenta()">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal para registrar pago -->
+            <div id="modalRegistroPago" class="modal-registro-pago">
+                <div class="modal-registro-pago-content">
+                    <span class="modal-registro-pago-close" onclick="cerrarModalRegistroPago()">&times;</span>
+                    <h2>Pagar</h2>
+                    <div class="modal-registro-pago-body">
+                        <label for="montoTotal">Total:</label>
+                        <input type="text" id="montoTotal" readonly>
+
+                        <label for="montoPagado">Pago con:</label>
+                        <input type="number" id="montoPagado" oninput="calcularCambio()">
+
+                        <label for="cambio">Cambio:</label>
+                        <input type="text" id="cambio" readonly>
+
+                        <div class="modal-registro-pago-buttons">
+                            <button type="button" class="modal-registro-pago-btn-ticket" onclick="cobrarVenta(false)">Cobrar sin ticket</button>
+                            <button type="button" class="modal-registro-pago-btn-ticket" onclick="cobrarVenta(true)">Cobrar con ticket</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="modalMermas" class="modal-mermas">
+                <div class="modal-content-mermas">
+                    <span class="close-mermas" onclick="cerrarmodalmerma()">&times;</span>
+                    <h2>Merma galletas</h2>
+                    <form id="mermaForm">
+                        <label for="tipoGalleta2">Tipo de galleta:</label>
+                        <select id="tipoGalleta2" name="tipoGalleta">
+                            <option value="" disabled selected>Seleccione la galleta</option>
+
+                        </select>
+
+                        <label for="descripcion">Descripción:</label>
+                        <input type="text" id="descripcion" name="descripcion" required>
+
+                        <label for="cantidad2">Cantidad:</label>
+                        <input type="number" id="cantidad2" name="cantidad2">
+
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha" required>
+
+                        <div class="modal-buttons-mermas">
+                            <button type="button" onclick="guardarMerma()">Aceptar</button>
+                            <button type="button" onclick="cerrarmodalmerma()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="js/Ventas.js" type="text/javascript"></script>
+    </body>
+</html>

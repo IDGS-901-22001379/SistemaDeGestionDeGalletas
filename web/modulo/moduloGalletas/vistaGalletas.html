@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Módulo Galletas - Galletería Don Galleto</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- SweetAlert CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+        <link href="../../css/estilos_galletas.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body>
+        <!-- Encabezado -->
+        <header class="header">
+            <img src="../../imagenes/galleto.png" alt="Logo Don Galleto" class="logo">
+            <nav class="nav">
+                <a href="#">Insumos</a>
+                <a href="#">Ventas</a>
+                <a href="#">Producción</a>
+                <a href="#" class="active">Galletas</a>
+                <a href="#">Compras</a>
+                <a href="#">Ganancias</a>
+            </nav>
+        </header>
+
+        <!-- Submenú -->
+        <div class="submenu">
+            <button class="active" id="unidad-tab" onclick="mostrarTabla('unidad')">Unidad</button>
+            <button id="caja-un-kilo-tab" onclick="mostrarTabla('caja-un-kilo')">Caja de un kilo</button>
+            <button id="caja-medio-kilo-tab" onclick="mostrarTabla('caja-medio-kilo')">Caja de medio kilo</button>
+        </div>
+
+        <!-- Tablas -->
+        <div id="unidad-tabla" class="tabla-contenedor">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Galleta</th>
+                        <th>Costo</th>
+                        <th>Existencia</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="productoTableBodyUnidad">
+                    <!-- Contenido dinámico -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="caja-un-kilo-tabla" class="tabla-contenedor" style="display: none;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Contenido</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="productoTableBodyCajaUnKilo">
+                    <!-- Contenido dinámico -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="caja-medio-kilo-tabla" class="tabla-contenedor" style="display: none;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Sabor</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="productoTableBodyCajaMedioKilo">
+                    <!-- Contenido dinámico -->
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalAgregarGalleta" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Agregar Galleta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Tipo de Galleta -->
+                        <div class="mb-3">
+                            <label for="selectTipo" class="form-label">Tipo:</label>
+                            <select class="form-select" id="selectTipo" required>
+                                <option value="CAJA">Caja de un kilo</option>
+                                <option value="MEDIA_CAJA">Caja de medio kilo</option>
+                            </select>
+                        </div>
+
+                        <!-- Galleta -->
+                        <div class="mb-3">
+                            <label for="selectGalleta" class="form-label">Galleta:</label>
+                            <select class="form-select" id="selectGalleta" required>
+                                <!-- Opciones dinámicas -->
+                            </select>
+                        </div>
+
+                        <!-- Costo -->
+                        <div class="mb-3">
+                            <label for="inputCosto" class="form-label">Costo:</label>
+                            <input type="number" class="form-control" id="inputCosto" min="0" step="0.01" required>
+                        </div>
+
+                        <!-- Cantidad -->
+                        <div class="mb-3">
+                            <label for="inputCantidad" class="form-label">Cantidad:</label>
+                            <input type="number" class="form-control" id="inputCantidad" min="1" required>
+                        </div>
+
+                        <!-- Fecha -->
+                        <div class="mb-3">
+                            <label for="inputFecha" class="form-label">Fecha:</label>
+                            <input type="date" class="form-control" id="inputFecha" required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="guardarProducto()">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Alertas -->
+        <div class="alert alert-info" id="alertas" style="display: none;">
+            <!-- Contenido dinámico -->
+        </div>
+
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../js/Galletas.js"></script>
+    </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Insumos - Galletería Don Galleto</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+        <link href="css/estilos_insumos.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body onload="cargarCatInsumos()">
+        <img src="img/galleto.png" alt="" class="logo" onclick="redireccionar()">
+        <header class="header">
+
+            <nav class="nav">
+                <a href="Insumos.html" class="activo">Insumos</a>
+                <a href="Ventas.html">Ventas</a>
+                <a href="Produccion.html">Producción</a>
+                <a href="#">Galletas</a>
+                <a href="Compras.html">Compras</a>
+                <a href="#">Ganancias</a>
+            </nav>
+        </header>
+
+        <main class="main">
+            <!-- Tabla de ventas -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Insumo</th>
+                        <th>Unidad</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tblInsumos">
+
+                </tbody>
+            </table>
+
+            <!-- Nueva sección debajo de la tabla -->
+            <div class="extra-section">
+                <div>
+                    <h3>Alertas del día</h3>
+                    <div id="alertas" class="alertas" style="padding: 10px; border: 1px solid #ccc;"></div>
+
+                </div>
+                <button id="boton_compra" onclick="Agregarinsumo()">
+                    <img src="img/carrito-de-compras.png" alt=""/>
+                </button>
+            </div>
+
+            <!-- Modal Merma-->
+            <div id="modalMerma" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="cerrarModal()">&times;</span>
+                    <h2>Merma Insumos</h2>
+                    <form id="formulario-comparar">
+                        <label for="insumo">Insumo:</label>
+                        <input type="text" id="insumomerma" name="insumomerma" required disabled="">
+                        <label for="descripcion">Descripción:</label>
+                        <br>
+                        <textarea class="textarea" id="descripccionerma" name="descripccionerma" required></textarea>
+                        <br>
+                        <label for="cantidadmerma">Cantidad:</label>
+                        <input type="text" id="cantidadmerma" name="cantidadmerma" required oninput="validarNumero(this)">
+                        <label for="fechamerma">Fecha:</label>
+                        <input type="text" id="fechamerma" name="fechamerma" required disabled="">
+                        <div class="modal-buttons">
+                            <button type="button" onclick="enviarMerma()">Guardar</button>
+                            <button type="button" onclick="cerrarModal()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal Agregar-->
+            <div id="modalAgregar" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="cerrarModalAgregar()">&times;</span>
+                    <h2>Agregar Insumos</h2>
+                    <form id="formulario-comparar">
+                        <label for="orden">Orden de compra:</label>
+                        <input type="text" id="ordenCompra" name="ordenCompra" required>
+                        <button id="buscarBtn">Buscar</button> <!-- Botón para buscar -->
+                        <label for="insumos">Insumos:</label>
+                        <br>
+                        <textarea class="textarea" id="insumosAgregar" name="insumosAgregar" required disabled></textarea>
+                        <br>
+                        <label for="fechamerma">Fecha:</label>
+                        <input type="text" id="fechaagregar" name="fechamerma" required disabled>
+                        <div class="modal-buttons">
+                            <button type="button" onclick="actualizarEstatusCompra(event)">Guardar</button>
+                            <button type="button" onclick="cerrarModalAgregar()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="js/Insumos.js" type="text/javascript"></script>
+    </body>
+</html>
